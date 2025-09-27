@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedixAI - Your Personal Health Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevents scrollbars from flashing during animations */
+        }
+        /* Fade-in animation for chat messages */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        /* Typing indicator animation */
+        @keyframes typing {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+            100% { transform: translateY(0); }
+        }
+        .dot {
+            animation: typing 1.2s infinite ease-in-out;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Typewriter cursor */
+        .typing-cursor::after {
+            content: '|';
+            display: inline-block;
+            margin-left: 3px;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { color: transparent; }
+            50% { color: #374151; } /* gray-700 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+
+        <div class="flex justify-center mb-4">
+                <img src="D:\sih2025\medixai\graphics\logo.png" alt="MedixAI Logo" class="h-24 w-auto">
+            </div>
+
+        <!-- Left Side: Authentication -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 bg-gradient-to-br from-green-900 to-green-500">
+            <div class="max-w-sm w-full bg-white/60 p-8 rounded-2xl shadow-xl backdrop-blur-lg">
+
+                <div class="text-center mb-6 h-7 flex items-center justify-center">
+                    <p id="typewriter-text" class="text-gray-800 text-lg font-medium typing-cursor"></p>
+                </div>
+
+                <!-- Auth Form -->
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-lg font-medium text-gray-800">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition text-lg">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-lg font-medium text-gray-800">Phone No.</label>
+                        <div class="mt-2 flex rounded-lg shadow-sm">
+                            <select id="country-code" name="country-code" class="text-lg block pl-3 pr-9 py-3 border border-r-0 border-gray-300 rounded-l-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-500 transition">
+                                <option>+1</option>
+                                <option>+44</option>
+                                <option selected>+91</option>
+                                <option>+61</option>
+                                <option>+1</option>
+                            </select>
+                            <input type="tel" id="phone" name="phone" placeholder="98765 43210" class="text-lg flex-1 block w-full px-4 py-3 border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition">
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg shadow-sm text-xl font-semibold text-white bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform hover:scale-105">
+                            Get Started
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Right Side: Video Demo Simulation -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-100 relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute -top-20 -right-20 w-72 h-72 bg-green-200 rounded-full opacity-30 blur-xl"></div>
+            <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-teal-200 rounded-full opacity-30 blur-xl"></div>
+
+            <!-- Phone Mockup -->
+            <div class="w-full max-w-sm h-[85vh] max-h-[720px] bg-white rounded-[40px] shadow-2xl p-4 border-8 border-gray-800 flex flex-col z-10">
+                <!-- Phone Header -->
+                <div class="h-8 bg-gray-800 rounded-t-[20px] flex items-center justify-center relative flex-shrink-0">
+                     <div class="w-1/3 h-2 bg-black/50 rounded-b-lg absolute top-0"></div>
+                </div>
+                <!-- WhatsApp UI -->
+                <div class="flex-1 bg-white rounded-b-[20px] flex flex-col overflow-hidden">
+                    <!-- Chat Header -->
+                    <div class="flex items-center p-3 bg-gray-100 border-b border-gray-200 flex-shrink-0">
+                        <img src="https://i.imgur.com/G5g3Avm.png" alt="MedixAI Profile" class="h-10 w-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-bold text-gray-800">MedixAI</p>
+                            <p class="text-sm text-gray-500 flex items-center">
+                                online
+                                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M19.7,4.4c-1.9-1.9-4.4-2.9-7.2-2.9c-5.7,0-10.3,4.6-10.3,10.3c0,1.8,0.5,3.6,1.3,5.1l-1.4,5.2l5.3-1.4 c1.5,0.8,3.2,1.3,4.9,1.3h0c5.7,0,10.3-4.6,10.3-10.3C22.6,8.8,21.6,6.3,19.7,4.4z M12.5,20.5h0c-1.6,0-3.2-0.4-4.5-1.2l-0.3-0.2 l-3.4,0.9l0.9-3.3l-0.2-0.3c-0.9-1.4-1.3-3-1.3-4.7c0-4.6,3.7-8.3,8.3-8.3c2.2,0,4.3,0.9,5.9,2.4c1.5,1.5,2.4,3.6,2.4,5.9 C20.8,16.8,17.1,20.5,12.5,20.5z M18.1,14.8c-0.2-0.1-1.3-0.6-1.5-0.7c-0.2-0.1-0.4-0.1-0.5,0.1c-0.2,0.2-0.6,0.7-0.7,0.8 c-0.1,0.2-0.2,0.2-0.4,0.1c-0.2-0.1-0.8-0.3-1.6-1c-0.6-0.5-1-1.2-1.2-1.4c-0.1-0.2,0-0.4,0.1-0.5c0.1-0.1,0.2-0.2,0.4-0.4 c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0.1-0.2,0-0.4C13,10.4,12.4,9,12.2,8.5c-0.2-0.5-0.4-0.4-0.5-0.4H11c-0.2,0-0.4,0.1-0.5,0.3 c-0.2,0.2-0.7,0.7-0.7,1.7c0,1,0.7,1.9,0.8,2.1c0.1,0.2,1.3,2.1,3.3,2.9c0.5,0.2,0.8,0.3,1.1,0.4c0.5,0.1,0.9,0.1,1.2,0 c0.4-0.2,1.3-1,1.4-1.9C18.4,15.2,18.3,15,18.1,14.8z"/></svg>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Area -->
+                    <div id="chat-area" class="flex-1 p-4 bg-cover bg-center overflow-y-auto" style="background-image: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');">
+                        <div id="chat-content" class="flex flex-col justify-end space-y-3">
+                            <!-- Chat messages will be injected here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Input Bar -->
+                    <div class="p-3 bg-gray-100 flex items-center flex-shrink-0">
+                        <div class="flex-1 bg-white rounded-full px-4 py-2 text-gray-500">
+                            Type a message...
+                        </div>
+                        <div class="ml-3 w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chat simulation script
+        const chatContent = document.getElementById('chat-content');
+        const chatArea = document.getElementById('chat-area');
+        const messages = [
+            { from: 'user', text: "I've had a persistent dry cough and a mild fever for two days. Should I be concerned?" },
+            { from: 'bot', thinking: true },
+            { from: 'bot', text: "I understand your concern. A dry cough and mild fever are common symptoms for several conditions, from the common cold to the flu. It's important to monitor your symptoms." },
+            { from: 'bot', text: "For your safety, I recommend you stay hydrated and get plenty of rest. If your fever worsens or you experience difficulty breathing, please consult a healthcare professional immediately." },
+            { from: 'user', text: "Okay, thank you for the advice!" },
+            { from: 'bot', thinking: true },
+            { from: 'bot', text: "You're welcome! Remember, I am an AI assistant and not a substitute for a real doctor. Take care and feel better soon. Is there anything else I can help with?" }
+        ];
+
+        function createMessageElement(message) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `flex w-full ${message.from === 'user' ? 'justify-end' : 'justify-start'}`;
+            
+            if (message.thinking) {
+                wrapper.innerHTML = `
+                    <div class="bg-gray-200 rounded-lg p-3 max-w-[85%] fade-in">
+                        <div class="flex items-center space-x-1">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full dot"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full dot"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full dot"></div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                wrapper.innerHTML = `
+                    <div class="${message.from === 'user' ? 'bg-green-100' : 'bg-white'} rounded-lg p-3 max-w-[85%] shadow-sm fade-in">
+                        <p class="text-gray-800">${message.text}</p>
+                    </div>
+                `;
+            }
+            return wrapper;
+        }
+
+        async function runSimulation() {
+            chatContent.innerHTML = '';
+            let thinkingMessageElement = null;
+
+            for (const message of messages) {
+                if (thinkingMessageElement) {
+                    thinkingMessageElement.remove();
+                    thinkingMessageElement = null;
+                }
+                
+                const element = createMessageElement(message);
+                chatContent.appendChild(element);
+                chatArea.scrollTop = chatArea.scrollHeight;
+
+                if (message.thinking) {
+                    thinkingMessageElement = element;
+                }
+                
+                // Determine delay based on message type
+                const delay = message.thinking ? 2500 : (message.from === 'user' ? 2000 : message.text.length * 40);
+                await new Promise(resolve => setTimeout(resolve, delay > 4000 ? 4000 : delay));
+            }
+            
+            // Restart simulation after a pause
+            setTimeout(runSimulation, 5000);
+        }
+
+        // Typewriter effect script
+        const typewriterElement = document.getElementById('typewriter-text');
+        const phrases = [
+            "Your Personal AI Health Assistant.",
+            "आपका व्यक्तिगत AI स्वास्थ्य सहायक।",
+            "ଆପଣଙ୍କର ବ୍ୟକ୍ତିଗତ AI ସ୍ୱାସ୍ଥ୍ୟ ସହାୟକ।"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const delayBetweenPhrases = 2000;
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            let displayText = '';
+
+            if (isDeleting) {
+                displayText = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                displayText = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            typewriterElement.textContent = displayText;
+
+            let typeDelay = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeDelay = delayBetweenPhrases;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeDelay = 500;
+            }
+
+            setTimeout(typeWriter, typeDelay);
+        }
+
+
+        // Start simulations when the page loads
+        window.addEventListener('load', () => {
+            runSimulation();
+            typeWriter();
+        });
+
+    </script>
+</body>
+</html>
+
